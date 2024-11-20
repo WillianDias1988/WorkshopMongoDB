@@ -50,4 +50,12 @@ public class UserResource {
 		userService.Delete(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> Update(@RequestBody UserDTO userDTO, @PathVariable String id ) {
+		User user = userService.FromDTO(userDTO);
+		user.setId(id);
+		user = userService.Update(user);
+		return ResponseEntity.noContent().build();
+	}
 }
